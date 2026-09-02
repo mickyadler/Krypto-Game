@@ -66,7 +66,7 @@ With focus on the working area, press **Q** or **A** to cycle through `+`, `−`
 
 Still with focus on the working area (red line), press **=**. The two cards combine into a single result, shown in the left slot. A large `=` symbol appears next to it as a reminder that this value is locked in — it disappears as soon as you take any other action.
 
-- If you still have cards left to use, the result appears in a **small font, bright blue/magenta** — this marks it as a mid-calculation value rather than an original card.
+- If you still have cards left to use, the result appears in a **small font, bright blue** — this marks it as a mid-calculation value rather than an original card.
 - If that was your **last card**, the result appears large, in the same bright color — this is your final answer, automatically checked against the target.
 
 ### 5. Keep combining
@@ -113,7 +113,7 @@ Each card's number is colored by size, as a quick visual guide:
 | 11–17 | Red |
 | 18–25 | Cyan |
 
-This coloring only applies to your five original playable cards — calculated results are always shown in bright blue/magenta, so you can tell at a glance whether a number is an original card or something you've computed.
+This coloring only applies to your five original playable cards — calculated results are always shown in bright blue, so you can tell at a glance whether a number is an original card or something you've computed.
 
 ---
 
