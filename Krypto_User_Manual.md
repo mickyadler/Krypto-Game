@@ -54,15 +54,17 @@ With focus on the card row (blue line), use **O** / **P** to move the red select
 
 Move to another unused card and press **S** again. It appears in a second slot next to the first, with an operator symbol (starting with `+`) shown between them.
 
-### 3. Choose your operator
+### 3. Switch focus and choose your operator
 
-With two cards in place, press **Q** or **A** to cycle through `+`, `−`, `×`, `÷` until you see the one you want.
+Press **C** to switch focus down to the working area (the line on the left turns **red**). **Q** and **A** only respond while you're focused here — pressing them with the blue line showing (focus still on the card row) does nothing.
 
-> **Tip:** press **C** to switch focus down to the working area, then **O** or **P** to swap which card is on the left and which is on the right — useful for subtraction and division, where order matters.
+With focus on the working area, press **Q** or **A** to cycle through `+`, `−`, `×`, `÷` until you see the one you want.
+
+> **Tip:** while still focused on the working area, press **O** or **P** to swap which card is on the left and which is on the right — useful for subtraction and division, where order matters.
 
 ### 4. Calculate
 
-Press **=**. The two cards combine into a single result, shown in the left slot. A large `=` symbol appears next to it as a reminder that this value is locked in — it disappears as soon as you take any other action.
+Still with focus on the working area (red line), press **=**. The two cards combine into a single result, shown in the left slot. A large `=` symbol appears next to it as a reminder that this value is locked in — it disappears as soon as you take any other action.
 
 - If you still have cards left to use, the result appears in a **small font, bright blue/magenta** — this marks it as a mid-calculation value rather than an original card.
 - If that was your **last card**, the result appears large, in the same bright color — this is your final answer, automatically checked against the target.
