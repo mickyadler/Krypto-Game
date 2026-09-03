@@ -173,7 +173,7 @@ Development was also assisted by:
 -   **ChatGPT (OpenAI)** --- programming assistance, solver design and
     testing, debugging, optimization, game design, and development
     discussions.
--   **Claude (Anthropic)** --- additional code analysis and optimization
+-   **Claude (Anthropic)** --- Helped developing the graphical interface, additional code analysis and optimization
     suggestions.
 
 Both were used as development tools; all generated and suggested code
