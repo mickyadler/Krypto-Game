@@ -1,191 +1,101 @@
-# KRYPTO for the ZX Spectrum 48K
+# Krypto
 
-A version of the classic **KRYPTO mathematical card game** for the **ZX
-Spectrum 48K**, written in Pascal using the **PASTA80** compiler.
+A version of the classic **KRYPTO** mathematical card game for the **ZX Spectrum 48K**, written in Pascal using the [PASTA80](https://pasta80.dev) compiler.
+
+---
 
 ## The Game
 
-KRYPTO is a mathematical card game in which five number cards and one
-target card are dealt.
+Five number cards and one target card are dealt. The objective: use all five number cards exactly once, together with `+ − × ÷`, to reach the value on the target card.
 
-The objective is to use **all five number cards exactly once**, together
-with addition `+`, subtraction `-`, multiplication `*`, and division
-`/`, to obtain the value shown on the target card.
+Intermediate negative values are allowed — but every division must produce an **exact integer result**; fractional intermediate values are not permitted.
 
-In this version, intermediate negative values are allowed, but division
-must produce an exact integer result; fractional intermediate values are
-not permitted.
+Every deal is guaranteed solvable: the game runs its solver behind the scenes before showing you a hand, reshuffling automatically until it finds one it can prove.
 
-The ZX Spectrum version uses graphical cards and an interactive work
-area where cards can be selected, combined, and intermediate results
-temporarily parked while the player constructs a solution.
+---
 
-------------------------------------------------------------------------
+## Features
 
-## The Two Main Challenges
+- **Guaranteed-solvable deals**, verified invisibly before dealing.
+- **Live, context-aware key legend** at the bottom of the screen — always shows exactly which keys do something right now.
+- **Full working-area UI** — pick up cards, choose an operator, chain results, and use a dedicated parking slot to juggle multi-step calculations (e.g. computing `(13+14+8)` and `(17−12)` separately before combining them).
+- **Visual feedback throughout** — colour-coded card values, a used-card indicator, a live focus indicator, and distinct styling for raw cards vs. intermediate vs. final results.
+- **Wrong-answer support** — view a full worked solution, restart the same deal, or reshuffle.
+- Sound effects, and runs entirely within the **48K RAM budget** of an original Spectrum.
 
-Although KRYPTO looks like a relatively small game, two technical
-problems became particularly important when implementing it on a 48K ZX
-Spectrum.
+## How to Play
 
-### 1. Finding a Solvable Shuffle Quickly
+You're dealt six cards: five playable, and one target (shown slightly raised, on the right — your goal number, never selectable). Pick up two cards, choose an operator, press `=` to combine them, then keep combining your running result with the remaining cards until all five are used.
 
-A random deal is not necessarily solvable.
+Full rules and a step-by-step walkthrough are in [`MANUAL.md`](MANUAL.md).
 
-Therefore, before presenting a new game to the player, the program runs
-a solver to determine whether the five dealt cards can produce the
-target.
+### Controls
 
-A straightforward exhaustive search is much too slow on a 3.5 MHz Z80.
-Early versions of the solver could take many seconds, or even minutes,
-on difficult or unsolvable combinations.
+| Key | Action |
+|---|---|
+| `O` / `P` | Move card selection (top row) · Swap operands (bottom row) |
+| `C` | Switch focus between the card row and the working area |
+| `S` | Pick up the selected card · Park or recall a value |
+| `Q` / `A` | Cycle the operator: `+` → `−` → `×` → `÷` |
+| `=` | Calculate the result |
+| `D` | Restart the current deal (once you've picked up a card) |
+| `R` | Reshuffle for a new deal — any time |
+| `E` | Exit — any time |
 
-A considerable part of the development effort therefore went into
-designing and testing a much faster solver.
+A vertical line on the left edge shows which half of the screen is active: **blue** (top) for the card row, **red** (bottom) for the working area — `Q`, `A`, `=`, and the `O`/`P` swap only respond while the working area is focused.
 
-The final solver uses a compact subset/pair/triple search strategy and
-aggressive elimination of redundant work. A time limit is also used: if
-a particular deal takes too long to prove, the program simply reshuffles
-and tries another deal.
+---
 
-The result is that, during normal play, the solver and any necessary
-reshuffling are effectively invisible to the player.
+## Engineering Notes
 
-This was one of the most difficult parts of the project.
+Krypto looks small, but two problems made it a real challenge on a 3.5 MHz Z80 with 48K of RAM.
 
-### 2. Fitting Everything into 48K
+**Finding a solvable shuffle, fast.** A random deal isn't necessarily solvable, and a naive exhaustive search was far too slow — early versions could take seconds or minutes on hard deals. The final solver uses a compact subset/pair/triple search with aggressive elimination of redundant work, plus a time limit: if a deal can't be proven quickly, it's discarded and another is dealt. In practice, the solver and any reshuffling are invisible to the player.
 
-The second major problem is memory.
+> The player does not need to know that a solver is running. If a deal can't be verified quickly enough, discard it and deal another one.
 
-The game contains graphical card data, card drawing routines, the
-complete game engine, the KRYPTO solver, solution reconstruction for
-hints, sound effects, menus and user interface, working tables required
-by the solver, and the Pascal runtime and stack.
+**Fitting everything into 48K.** Card graphics, drawing routines, the full game engine, the solver, hint reconstruction, sound, UI, and the Pascal runtime all had to fit together. Significant effort went into shrinking compiled size without slowing the solver or risking correctness — shared drawing routines instead of duplicated ones, compact lookup tables in place of repeated code, fewer procedure wrappers, the card deck stored as compact initialized data, and a sound-effect library trimmed down to only the effects the game actually uses.
 
-PASTA80 generates native Z80 machine code, so compiled program size
-quickly became an important constraint.
+### Build directives
 
-A great deal of work therefore went into reducing code size without
-making the solver slower or compromising its correctness.
-
-Examples include sharing graphics routines, replacing repeated code with
-compact tables, reducing unnecessary procedure wrappers, storing the
-KRYPTO deck as initialized data, and substantially reducing the size of
-the sound-effect engine.
-
-The project deliberately reserves only a 2K stack so that more of the
-Spectrum's memory remains available for program code.
-
-------------------------------------------------------------------------
-
-## PASTA80 Build Directives
-
-Near the beginning of the source are these directives:
-
-``` pascal
-{$l divmod.asm}
-{$m 2048}
-{$l BeepFX2.asm} { machine code to be used to play sound effects.}
+```pascal
+{$l divmod.asm}   { Z80 assembly: combined divide+remainder, used heavily by the solver }
+{$m 2048}         { 2K stack instead of PASTA80's default 4K - frees RAM for code }
+{$l BeepFX2.asm}  { machine-code sound player, trimmed to only this game's effects }
 ```
 
-They are important parts of the program.
+---
 
-### `{$l divmod.asm}`
+## Building
 
-`divmod.asm` is a small Z80 assembly routine used by the solver for
-integer division.
+```sh
+pasta80 Krypto.pas
+```
 
-The solver performs a very large number of arithmetic tests. For a
-division to be legal in this version of KRYPTO, the division must have
-**zero remainder**.
+Produces a `.tap` (or your configured PASTA80 output) targeting the 48K Spectrum. *(Adjust to match your local PASTA80 setup/version.)*
 
-The assembly `DivMod` routine calculates the quotient and remainder
-together, avoiding unnecessary duplicated division work. This is
-particularly valuable inside the performance-critical solver.
+## Running
 
-### `{$m 2048}`
+Load the build in your emulator of choice (developed/tested with [Spectaculator](https://www.spectaculator.com/)), or transfer to real hardware via the usual `.tap`/microdrive/DivMMC route.
 
-This tells PASTA80 to reserve a **2048-byte stack**.
-
-PASTA80 normally reserves a larger stack. This program does not use
-recursion and was designed to operate safely with the smaller stack.
-
-On a 48K Spectrum, those extra bytes are extremely valuable. Reducing
-the stack from 4K to 2K gives the compiled game considerably more room
-while still leaving an adequate stack for this program.
-
-### `{$l BeepFX2.asm}`
-
-`BeepFX2.asm` contains the Z80 machine-code sound-effect player and the
-sound effects used by the game.
-
-An earlier version contained many effects that KRYPTO never used.
-Because memory is precious, the sound library was reduced to contain
-only the effects actually required by the game.
-
-This change alone recovered a surprisingly significant amount of memory.
-
-------------------------------------------------------------------------
-
-## Development
-
-The project was developed through extensive testing on the ZX Spectrum
-48K environment, with particular attention to solver correctness, solver
-execution time, and compiled code size.
-
-Many solvable and deliberately unsolvable KRYPTO combinations were used
-to verify the solver. Random deals from the real KRYPTO deck
-distribution were also tested to determine whether the solver was fast
-enough for use during an actual shuffle.
-
-The guiding principle became:
-
-> The player does not need to know that a solver is running.\
-> If a deal cannot be verified quickly enough, discard it and deal
-> another one.
-
-This proved very effective in practice.
-
-------------------------------------------------------------------------
+---
 
 ## Credits
 
-### Joerg Pleumann
+- Game design & development: **Micky** ([@mickyadler](https://github.com/mickyadler))
+- **Joerg Pleumann**, creator of [PASTA80](https://pasta80.dev) — whose compiler made a Pascal program of this size possible on a 48K Spectrum, and whose technical advice on memory, stack behaviour, and code size directly shaped this project.
+- **AI assistance**: ChatGPT (OpenAI) — solver design and testing, debugging, optimization, game design; Claude (Anthropic) — graphical interface development, code analysis and optimization suggestions. All generated and suggested code was compiled, tested, measured, and revised on the real target platform.
 
-A **very special thank you to Joerg Pleumann**, creator of **PASTA80**.
+### Target System
 
-His compiler made it possible to write a substantial Pascal program for
-the ZX Spectrum while still producing native Z80 code suitable for a 48K
-machine.
+| | |
+|---|---|
+| Computer | Sinclair ZX Spectrum 48K |
+| Language | Pascal |
+| Compiler | PASTA80 |
+| CPU | Z80 |
+| Memory | 48K |
 
-Joerg also provided invaluable technical advice during development,
-including information about PASTA80's memory and stack behaviour,
-code-size considerations, division routines, and suggestions for
-reducing the size of the final program.
+## License
 
-His help and willingness to answer detailed questions about the compiler
-contributed significantly to this project.
-
-### AI Assistance
-
-Development was also assisted by:
-
--   **ChatGPT (OpenAI)** --- programming assistance, solver design and
-    testing, debugging, optimization, game design, and development
-    discussions.
--   **Claude (Anthropic)** --- Helped developing the graphical interface, additional code analysis and optimization
-    suggestions.
-
-Both were used as development tools; all generated and suggested code
-was compiled, tested, measured, and revised on the actual target
-environment.
-
-------------------------------------------------------------------------
-
-## Target System
-
--   **Computer:** Sinclair ZX Spectrum 48K
--   **Language:** Pascal
--   **Compiler:** PASTA80
--   **CPU:** Z80
--   **Memory:** 48K
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
