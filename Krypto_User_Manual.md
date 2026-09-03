@@ -10,7 +10,7 @@ Every deal in this game is **guaranteed to have a solution** — the game shuffl
 
 ## Getting Started
 
-When the game begins, you'll see six cards lying face down with a `KRYPTO` banner above them, and a prompt reading `ANY KEY`.
+When the game begins, you'll see six cards lying face down with a `KRYPTO` banner above them, and a prompt reading `Press any key...`.
 
 Press any key to flip the cards face up. You'll see:
 
@@ -94,7 +94,7 @@ This is essential for problems where you need to compute two things separately b
 
 ## Winning and Losing
 
-Once your final result appears, the game checks it against the target card automatically:
+Once your final result appears, the game checks it against the target card automatically. After showing the outcome, it will prompt `Press any key...` — press one to continue to your options:
 
 - **`*** CORRECT ***`** — you solved it! You'll then be offered:
   - **D** — replay this exact same deal (handy for trying a different route to the same answer).
