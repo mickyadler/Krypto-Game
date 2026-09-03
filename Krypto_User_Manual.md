@@ -23,6 +23,8 @@ The leftmost playable card starts **selected**, shown with a red frame around it
 
 ## Controls
 
+The bottom two lines of the screen always show a **live key legend** — it updates automatically to list only the keys that actually do something at your current stage, so you never have to guess what's available.
+
 | Key | Action |
 |---|---|
 | **O** | Move selection left (upper row) / swap operands (lower row) |
@@ -32,7 +34,9 @@ The leftmost playable card starts **selected**, shown with a red frame around it
 | **Q** | Cycle the operator forward: `+` → `−` → `×` → `÷` |
 | **A** | Cycle the operator backward |
 | **=** | Calculate the result |
-| **X** | Restart the current deal from the beginning |
+| **D** | Restart the current deal — available as soon as you've picked up your first card |
+| **R** | Reshuffle for a brand new deal — available at any time, mid-puzzle or not |
+| **E** | Exit — available at any time |
 
 Letters work in either upper or lower case.
 
@@ -66,7 +70,7 @@ With focus on the working area, press **Q** or **A** to cycle through `+`, `−`
 
 Still with focus on the working area (red line), press **=**. The two cards combine into a single result, shown in the left slot. A large `=` symbol appears next to it as a reminder that this value is locked in — it disappears as soon as you take any other action.
 
-- If you still have cards left to use, the result appears in a **small font, bright blue** — this marks it as a mid-calculation value rather than an original card.
+- If you still have cards left to use, the result appears in a **small font, bright blue/magenta** — this marks it as a mid-calculation value rather than an original card.
 - If that was your **last card**, the result appears large, in the same bright color — this is your final answer, automatically checked against the target.
 
 ### 5. Keep combining
@@ -92,14 +96,15 @@ This is essential for problems where you need to compute two things separately b
 
 Once your final result appears, the game checks it against the target card automatically:
 
-- **`*** CORRECT ***`** — you solved it!
-- **`*** WRONG ***`** — the result didn't match. You'll then be offered:
-  - **V** — view a worked solution for this exact deal.
-  - **X** — restart this same deal from scratch and try again.
+- **`*** CORRECT ***`** — you solved it! You'll then be offered:
+  - **D** — replay this exact same deal (handy for trying a different route to the same answer).
   - **R** — reshuffle for a brand new deal.
   - **E** — quit.
-
-If you solve it correctly, you'll be asked to choose **R** (new deal) or **E** (quit).
+- **`*** WRONG ***`** — the result didn't match. You'll then be offered:
+  - **V** — view a worked solution for this exact deal.
+  - **D** — restart this same deal from scratch and try again.
+  - **R** — reshuffle for a brand new deal.
+  - **E** — quit.
 
 ---
 
@@ -113,17 +118,21 @@ Each card's number is colored by size, as a quick visual guide:
 | 11–17 | Red |
 | 18–25 | Cyan |
 
-This coloring only applies to your five original playable cards — calculated results are always shown in bright blue, so you can tell at a glance whether a number is an original card or something you've computed.
+This coloring only applies to your five original playable cards — calculated results are always shown in bright blue/magenta, so you can tell at a glance whether a number is an original card or something you've computed.
 
 ---
 
 ## Quick Reference
+
+Not sure what a key does right now? Check the bottom of the screen — the legend there always shows exactly what's currently active.
 
 1. **O/P** — move / swap
 2. **C** — switch top ↔ bottom
 3. **S** — pick up a card, or park/recall a value
 4. **Q/A** — choose operator
 5. **=** — calculate
-6. **X** — restart the deal
+6. **D** — restart this deal (once you've picked up a card)
+7. **R** — reshuffle for a new deal, any time
+8. **E** — quit, any time
 
 Good luck, and happy solving!
