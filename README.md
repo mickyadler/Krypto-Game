@@ -69,14 +69,14 @@ Krypto looks small, but two problems made it a real challenge on a 3.5 MHz Z80 w
 ## Building
 
 ```sh
-pasta80 Krypto.pas
+pasta --zx48 --opt --dep --tap Krypto.pas
 ```
 
 Produces a `.tap` (or your configured PASTA80 output) targeting the 48K Spectrum. *(Adjust to match your local PASTA80 setup/version.)*
 
 ## Running
 
-Load the build in your emulator of choice (developed/tested with [Spectaculator](https://www.spectaculator.com/)), or transfer to real hardware via the usual `.tap`/microdrive/DivMMC route.
+Load the build in your emulator of choice (developed/tested with [Spectaculator](https://www.spectaculator.com/)), or transfer to real hardware via the usual `.tap` DivMMC route.
 
 ---
 
@@ -84,7 +84,8 @@ Load the build in your emulator of choice (developed/tested with [Spectaculator]
 
 - Game design & development: **Micky** ([@mickyadler](https://github.com/mickyadler))
 - **Joerg Pleumann**, creator of [PASTA80](https://pasta80.dev) — whose compiler made a Pascal program of this size possible on a 48K Spectrum, and whose technical advice on memory, stack behaviour, and code size directly shaped this project.
-- **AI assistance**: ChatGPT (OpenAI) — solver design and testing, debugging, optimization, game design; Claude (Anthropic) — graphical interface development, code analysis and optimization suggestions. All generated and suggested code was compiled, tested, measured, and revised on the real target platform.
+- **AI assistance**: ChatGPT (OpenAI) — solver design and testing, debugging, optimization, game design; Claude (Anthropic) — graphical interface development, code analysis and optimization suggestions.
+- All generated and suggested code was compiled, tested, measured, and revised on the real target platform.
 
 ### Target System
 
