@@ -1,7 +1,6 @@
 # Krypto
 
-A version of the classic **KRYPTO** mathematical card game for the **ZX Spectrum 48K**, written in Pascal using the [PASTA80](https://pasta80.dev) compiler.
-
+A version of the classic **KRYPTO** mathematical card game for the **ZX Spectrum 48K**, written in Pascal using the [PASTA80](https://github.com/pleumann/pasta80) compiler.
 ---
 
 ## The Game
@@ -83,7 +82,7 @@ Load the build in your emulator of choice (developed/tested with [Spectaculator]
 ## Credits
 
 - Game design & development: **Micky** ([@mickyadler](https://github.com/mickyadler))
-- **Joerg Pleumann**, creator of [PASTA80](https://pasta80.dev) — whose compiler made a Pascal program of this size possible on a 48K Spectrum, and whose technical advice on memory, stack behaviour, and code size directly shaped this project.
+- **Joerg Pleumann**, creator of [PASTA80](https://github.com/pleumann/pasta80) — whose compiler made a Pascal program of this size possible on a 48K Spectrum, and whose technical advice on memory, stack behaviour, and code size directly shaped this project.
 - **AI assistance**: ChatGPT (OpenAI) — solver design and testing, debugging, optimization, game design; Claude (Anthropic) — graphical interface development, code analysis and optimization suggestions.
 - All generated and suggested code was compiled, tested, measured, and revised on the real target platform.
 
