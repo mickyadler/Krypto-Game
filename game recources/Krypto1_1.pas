@@ -21,7 +21,8 @@
   Menu adjustment: G moved closer to main commands with a small visual gap.
   G becomes available after the first calculation; WRONG shows solution automatically. }
 { small change was added at 11:29 09 September 2026 so when G
- the red cursor goes all the way to the bottom}
+ the red cursor goes all the way to the bottom
+ Also fixed a bug with long line solution not being cleared properly}
 PROGRAM ShowCard;
 { Build3 table size test - ChatGPT - 02-Sep-2026 19:52 Israel time }
 
@@ -1651,10 +1652,10 @@ BEGIN
 
   FOR I := 1 TO 4 DO
   BEGIN
-    GotoXY(23,15+I);
+    GotoXY(21,15+I);
     SetAttr(4,0,1,0);
-    Write('         ');
-    GotoXY(23,15+I);
+    Write('           ');
+    GotoXY(21,15+I);
     Write(SolA[I]);
     Write(SolOpChar[SolOp[I]]);
     Write(SolB[I]);
@@ -1670,9 +1671,9 @@ BEGIN
     that extend to the right of the 4-column parking block. }
   FOR I := 1 TO 4 DO
   BEGIN
-    GotoXY(23,15+I);
+    GotoXY(21,15+I);
     SetAttr(4,0,1,0);
-    Write('         ')
+    Write('           ')
   END;
   DrawParkBlock(LowerParkX, LowerY)
 END;
