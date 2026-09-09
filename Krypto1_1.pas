@@ -20,7 +20,8 @@
   Fix: preserve Card3 outer operation code when saving solver solution.
   Menu adjustment: G moved closer to main commands with a small visual gap.
   G becomes available after the first calculation; WRONG shows solution automatically. }
-
+{ small change was added at 11:29 09 September 2026 so when G
+ the red cursor goes all the way to the bottom}
 PROGRAM ShowCard;
 { Build3 table size test - ChatGPT - 02-Sep-2026 19:52 Israel time }
 
@@ -1687,6 +1688,16 @@ BEGIN
   SetAttr(4,0,1,0);
   GotoXY(12,2);
   Write('R D E');
+  
+  IF Focus = 1 THEN
+  BEGIN
+    TextColor(2);
+    GotoXY(1,1);
+    Write(CHR(138));
+    GotoXY(1,2);
+    Write(CHR(138))
+  END;
+  
   Channel(2);
 
   REPEAT
