@@ -1,1 +1,1 @@
-micky-adler.itch.io
+https://micky-adler.itch.io/krypto-game
