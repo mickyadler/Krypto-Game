@@ -1,11 +1,10 @@
-h# Play the Game on Itch.io
+# Play the Game on Itch.io
 
-If you want to keep this GitHub page open, open the link in a new tab:
-**Right‑click → “Open link in new tab”**  
-or  
-**Ctrl+Click (Windows)** / **Cmd+Click (Mac)**  
-or  
-**Middle‑click** the link.
+To keep this GitHub page open, please open the link in a new tab:
 
-🎮 https://micky-adler.itch.io/krypto-game
+- Right‑click the link and choose **“Open link in new tab”**
+- Or press **Ctrl + Click** (Windows)
+- Or press **Cmd + Click** (Mac)
+- Or middle‑click the link with your mouse
 
+🎮 **https://micky-adler.itch.io/krypto-game**
