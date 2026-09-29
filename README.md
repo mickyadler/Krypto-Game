@@ -30,7 +30,7 @@ Every deal is guaranteed solvable: the game runs its solver behind the scenes be
 
 You're dealt six cards: five playable, and one target (shown slightly raised, on the right — your goal number, never selectable). Pick up two cards, choose an operator, press `ENTER` to combine them, then keep combining your running result with the remaining cards until all five are used.
 
-Full rules and a step-by-step walkthrough are in [`MANUAL.md`](MANUAL.md).
+Full rules and a step-by-step walkthrough are in [`Krypto_User_Manual.md`](Krypto_User_Manual.md).
 
 ### Controls
 
