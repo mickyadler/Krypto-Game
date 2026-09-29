@@ -1,6 +1,10 @@
 # Krypto
 
 A version of the classic **KRYPTO** mathematical card game for the **ZX Spectrum 48K**, written in Pascal using the [PASTA80](https://github.com/pleumann/pasta80) compiler.
+
+> **Latest version: Release 1.1b** — fixes a rare crash when a calculation
+> result is exactly -32768. Download `Krypto1_1b.tap`.
+> See [CHANGELOG.md](CHANGELOG.md) for details.
 ---
 
 ## The Game
