@@ -2,10 +2,10 @@
 
 A version of the classic **KRYPTO** mathematical card game for the **ZX Spectrum 48K**, written in Pascal using the [PASTA80](https://github.com/pleumann/pasta80) compiler.
 
-> **Latest version: Release 1.1b** — fixes a rare crash when a calculation
-> result is exactly -32768. Download `Krypto1_1b.tap`.
-> See [CHANGELOG.md](CHANGELOG.md) for details.
----
+> **Latest version: Release 1.2** — calculations too large for the Spectrum
+> now show TOO BIG instead of a wrong number, and illegal divisions
+> (fractions, or dividing by zero) are refused as the Krypto rules require.
+> Download `Krypto1_2.tap`. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## The Game
 
