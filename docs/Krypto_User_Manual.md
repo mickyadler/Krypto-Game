@@ -80,6 +80,12 @@ From this point onward, **G** is available in the live key legend. Press **G** t
 
 Pick up another card the same way, pair it with your running result, choose an operator, and press **ENTER** again. Repeat until all five cards are used.
 
+- Division must come out exact, and you cannot divide by zero (dividing
+  zero is fine: 0 ÷ 12 = 0). An illegal division shows ILLEGAL; change the
+  operator with Q/A or swap the cards with O/P.
+- If a calculation gets too big for the Spectrum (beyond 32,767), the card
+  shows TOO BIG and the attempt ends as WRONG.
+
 ---
 
 ## The Parking Area
